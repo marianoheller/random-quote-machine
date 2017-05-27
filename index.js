@@ -25,10 +25,6 @@ $(document).ready(function(){
 
 });
 
-function twitterShare() {
-    console.log("Success");
-}
-
 function getQuotes() {
 
     const baseUrl = `https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=${cantQuotesRequest}`;
@@ -57,7 +53,6 @@ function pushQuotes( response ) {
     data.forEach( (singleQuote) => {
         quotes.push(singleQuote);
     });
-    console.log(quotes);
 } 
 
 function publishQuote() {
