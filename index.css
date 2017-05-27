@@ -1,11 +1,52 @@
 body {
     font-family: 'Josefin Slab', serif;
-    background-color: #EEEEEE;
+    background-color: white;
 }
 
-.twitter-share-button {
-    margin: 10px 10px 10px 10px;
+#twitter-share-button {
+    background-image: url(http://www.iconsdb.com/icons/download/black/twitter-48.png);
+    background-size: cover;
+    cursor: pointer;
+    border: 1px solid #222;
+    opacity: 0.85;
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
+
 }
-h1 {    
+
+#title {    
     font-family: 'Fredericka the Great', cursive;
+    text-align: center;
+}
+
+#quote-container {
+    background-color: #EEEEEE;
+    padding: 20px 40px 20px 40px;
+    border-radius: 2px;
+
+    -webkit-box-shadow: 10px 10px 10px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 10px -10px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 10px -10px rgba(0,0,0,0.75);
+}
+
+#quote {
+    font-size: 2em;
+    text-align: left;
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+#author {
+    margin: 10px;
+}
+
+#button-quote {
+    /*display: block;
+    float: right;
+    clear: right;*/
+}
+
+#botonera-container {
+    margin-top: 5px;
 }

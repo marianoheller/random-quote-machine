@@ -1,46 +1,70 @@
 
+const quotes = [];
+const cantQuotesRequest = 10;
+const minCantQuotes = 8;
+let flagPublishQuote = true;
+
 $(document).ready(function(){
-    /*
-    $("#button-quote").click( function(){
-        getQuote();
-    });
-*/
 
-    $('#button-quote').on('click', function(e) {
-        e.preventDefault();
-        $.ajax( {
-        url: '/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1',
-        success: function(data) {
-            var post = data.shift(); // The data is an array of posts. Grab the first one.
-            $('#quote-title').text(post.title);
-            $('#quote-content').html(post.content);
+    getQuotes();
 
-            // If the Source is available, use it. Otherwise hide it.
-            if (typeof post.custom_meta !== 'undefined' && typeof post.custom_meta.Source !== 'undefined') {
-            $('#quote-source').html('Source:' + post.custom_meta.Source);
-            } else {
-            $('#quote-source').text('');
-            }
-        },
-        cache: false
-        });
+    $("#button-quote").click( function() {
+        flagPublishQuote = true;
+        publishQuote();
+        if ( quotes.length < minCantQuotes) {   getQuotes();   }
+        
     });
+
+    $("#twitter-share-button").click( function() {
+        const quote = $("#quote").html();
+        const author = $("#author").html();
+        `http://twitter.com/share?text=${quote}&url=${author}&hashtags=RandomQuoteMachine,FreeCodeCamp`
+
+    });
+
+
 });
 
+function twitterShare() {
+    console.log("Success");
+}
 
-function getQuote() {
+function getQuotes() {
 
-    const corsUrl = "https://crossorigin.me/"
-    const baseUrl = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
-
-    //const requestUrl = `${baseUrl}?method=${method}&format=${format}&lang=${lang}`;
+    const baseUrl = `https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=${cantQuotesRequest}`;
 
     axios.get( baseUrl , {
+        headers: {
+            'X-Mashape-Key': "OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V",
+            'Content-Type': "application/x-www-form-urlencoded",
+            'Accept': "application/json"
+        },
+        
     })
     .then(function (response) {
-        console.log(response);
+        pushQuotes(response );
+        publishQuote();
     })
     .catch(function (error) {
         console.log(error);
+        throw Error(error);
     });
+}
+
+
+function pushQuotes( response ) {
+    const { data } = response;
+    data.forEach( (singleQuote) => {
+        quotes.push(singleQuote);
+    });
+    console.log(quotes);
+} 
+
+function publishQuote() {
+    if ( !flagPublishQuote ) {   return;   }
+    if ( !quotes ) {   return;   }
+    const { quote, author } = quotes.shift()
+    $("#quote").html( quote );
+    $("#author").html( author );
+    flagPublishQuote = false;
 }
