@@ -18,8 +18,7 @@ $(document).ready(function(){
     $("#twitter-share-button").click( function() {
         const quote = $("#quote").html();
         const author = $("#author").html();
-        `http://twitter.com/share?text=${quote}&url=${author}&hashtags=RandomQuoteMachine,FreeCodeCamp`
-
+        window.location.href = `http://twitter.com/share?text=${quote}&url=${author}&hashtags=RandomQuoteMachine,FreeCodeCamp`;
     });
 
 
