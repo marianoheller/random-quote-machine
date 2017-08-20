@@ -8,17 +8,26 @@ $(document).ready(function(){
 
     getQuotes();
 
-    $("#button-quote").click( function() {
+    $("#new-quote").click( function() {
         flagPublishQuote = true;
         publishQuote();
         if ( quotes.length < minCantQuotes) {   getQuotes();   }
         
     });
 
-    $("#twitter-share-button").click( function() {
-        const quote = $("#quote").html();
+    $("#tweet-quote").click( function() {
+        const quote = $("#text").html();
         const author = $("#author").html();
-        window.location.href = `http://twitter.com/share?text=${quote}&url=${author}&hashtags=RandomQuoteMachine,FreeCodeCamp`;
+        const targetUrl = `http://twitter.com/share?text=${quote}&url=${author}&hashtags=RandomQuoteMachine,FreeCodeCamp`;
+        //window.location.href = targetUrl;
+        var win = window.open( targetUrl, '_blank');
+        if (win) {
+            //Browser has allowed it to be opened
+            win.focus();
+        } else {
+            //Browser has blocked it
+            alert('Please allow popups for this website');
+        }
     });
 
 
@@ -58,7 +67,7 @@ function publishQuote() {
     if ( !flagPublishQuote ) {   return;   }
     if ( !quotes ) {   return;   }
     const { quote, author } = quotes.shift()
-    $("#quote").html( quote );
+    $("#text").html( quote );
     $("#author").html( author );
     flagPublishQuote = false;
 }

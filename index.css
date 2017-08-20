@@ -3,21 +3,29 @@ body {
     background-color: white;
 }
 
-#twitter-share-button {
-    background-image: url(http://www.iconsdb.com/icons/download/black/twitter-48.png);
+#tweet-quote {
+    
+    
+}
+
+#tweet-icon {
+    background-image: url("./twitter.png");
     background-size: cover;
     cursor: pointer;
     border: 1px solid #222;
-    opacity: 0.85;
+    opacity: 0.6;
     border-radius: 5px;
+    background-image: url("./twitter.png");
+    background-size: cover;
     height: 40px;
     width: 40px;
-
 }
 
 #title {    
     font-family: 'Fredericka the Great', cursive;
     text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 #quote-container {
@@ -30,7 +38,7 @@ body {
     box-shadow: 10px 10px 10px -10px rgba(0,0,0,0.75);
 }
 
-#quote {
+#text {
     font-size: 2em;
     text-align: left;
     margin: 10px;
@@ -41,7 +49,7 @@ body {
     margin: 10px;
 }
 
-#button-quote {
+#new-quote {
     /*display: block;
     float: right;
     clear: right;*/
